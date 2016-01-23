@@ -9,6 +9,17 @@ use OmniAuth::Builder do
   provider :twitter, 'DCfSzu7Y4NTCqqEMC96H0X21X', '9ppSzdNgrBsmbyGG1j8KbkLMaCZ7h1FVh5CaBfQmjTUCuwu6QN'
 end
 
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
+
+class Campaigns
+  include DataMapper::Resource
+  property :id,           Serial
+  property :hashtag,      String, :required => true
+  property :author,       String, :required => true
+end
+DataMapper.finalize
+#Campaigns.create(hashtag: "Volvo2016", author: "SergiiMiami")
+
 configure do
   enable :sessions
 end
@@ -81,11 +92,3 @@ get '/auth/twitter/callback' do
   output
 #  "<h1>Hi #{env['omniauth.auth']['info']['nickname']}!</h1><img src='#{env['omniauth.auth']['info']['image']}'>"
 end
-
-class Campaigns
-  include DataMapper::Resource
-  property :id,           Serial
-  property :hashtag,      String, :required => true
-  property :author,       String, :required => true
-end
-DataMapper.finalize
