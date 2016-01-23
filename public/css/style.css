@@ -11,6 +11,11 @@ body {
 	margin-bottom: 20px;
 }
 
+.col-md-8{
+	margin-bottom: 80px;
+	padding-bottom: 80px;
+}
+
 section{
 	padding:40px 0 40px 0;
 }
@@ -209,6 +214,15 @@ footer a{
 footer p{
 	float: right;
 }
+
+/* Adjust feedback icon position */
+section#Start_campaign .form-control-feedback {
+    right: 15px;
+}
+section#Start_campaign .selectContainer .form-control-feedback {
+    right: 25px;
+}
+
 
 /* MEDIA QUERIES */
 @media(max-width:1200px){
