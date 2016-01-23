@@ -28,6 +28,14 @@ section{
 	padding: 0 40px 0 40px;
 
 }
+.jumbotron_cmp{
+	background:#1b222a url(../img/Top_Bg_short.jpg) no-repeat top center;
+	color: #fff;
+	height: 80px;
+	overflow: none;
+
+}
+
 
 .navbar{
 	background: none !important;
