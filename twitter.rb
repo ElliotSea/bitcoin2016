@@ -3,6 +3,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
 require 'omniauth-twitter'
+require 'data_mapper'
 
 use OmniAuth::Builder do
   provider :twitter, 'DCfSzu7Y4NTCqqEMC96H0X21X', '9ppSzdNgrBsmbyGG1j8KbkLMaCZ7h1FVh5CaBfQmjTUCuwu6QN'
