@@ -4,6 +4,29 @@ require 'sinatra/reloader'
 require 'json'
 require 'omniauth-twitter'
 require 'data_mapper'
+require 'twitter'
+require 'json'
+
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key = 'DCfSzu7Y4NTCqqEMC96H0X21X'
+  config.consumer_secret = '9ppSzdNgrBsmbyGG1j8KbkLMaCZ7h1FVh5CaBfQmjTUCuwu6QN'
+  config.access_token = '260634042-2xdwuPbH7XlB6bN67DFdL6Su85Tpjya2ZHjBCSpg'
+  config.access_token_secret = 'cSj8X8kK6gAHXHIM41wj9PmotY3vKrtT8kFlVSHM0dIMK'
+end
+
+get '/tweets' do
+  5.times { puts '-------' }
+  #tw = client.status('676148707176423424')
+  #puts "Text: #{tw.text}"
+  #tw = client.search("#tweetybitcoin")
+  #puts tw.to_h
+  client.search("#MiaBitcoinHack #tweetybitcoin", result_type: "recent").take(1).collect do |tweet|
+  puts tweet.to_h
+  "#{tweet.user.screen_name}: #{tweet.text}"
+  end
+  #puts tw
+end
+
 
 use OmniAuth::Builder do
   provider :twitter, 'DCfSzu7Y4NTCqqEMC96H0X21X', '9ppSzdNgrBsmbyGG1j8KbkLMaCZ7h1FVh5CaBfQmjTUCuwu6QN'
