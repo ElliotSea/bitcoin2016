@@ -80,6 +80,12 @@ get '/auth/twitter/callback' do
   env.each { |n,v| output << n.to_s; output << ": "; output << v.to_s; output << "; " }
   output
 #  "<h1>Hi #{env['omniauth.auth']['info']['nickname']}!</h1><img src='#{env['omniauth.auth']['info']['image']}'>"
-  
-
 end
+
+class Campaigns
+  include DataMapper::Resource
+  property :id,           Serial
+  property :hashtag,      String, :required => true
+  property :author,       String, :required => true
+end
+DataMapper.finalize
