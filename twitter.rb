@@ -6,6 +6,7 @@ require 'omniauth-twitter'
 require 'data_mapper'
 require 'twitter'
 require 'json'
+require 'erb'
 
 client = Twitter::REST::Client.new do |config|
   config.consumer_key = 'DCfSzu7Y4NTCqqEMC96H0X21X'
@@ -14,17 +15,47 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = 'cSj8X8kK6gAHXHIM41wj9PmotY3vKrtT8kFlVSHM0dIMK'
 end
 
+get '/myCampaigns' do
+  a = 0
+  @Tweets = {}
+  client.search("#tweetybitcoin", result_type: "recent").take(10).collect do |tweet|
+    #puts tweet.to_h
+    a = a+1
+    capmaign_name = ''
+    tweet.text.scan(/#.\w{1,}/).each {|match| capmaign_name = match unless match == "#tweetybitcoin"}
+    @Tweets[a]={"tweet.user.screen_name"=>tweet.user.screen_name,
+      "tweet.user.followers_count"=>tweet.user.followers_count,
+      "tweet.user.statuses_count"=>tweet.user.statuses_count,
+      "tweet.text"=>tweet.text,
+      "tweet.retweet_count"=>tweet.retweet_count,
+      "tweet.favorite_count"=>tweet.favorite_count,
+      "capmaign_name"=>capmaign_name
+    }
+    #Tweets << "#{a}. <br> tweet.user.screen_name:#{tweet.user.screen_name} <br> tweet.user.followers_count: #{tweet.user.followers_count} <br> tweet.user.statuses_count: #{tweet.user.statuses_count} <br> tweet.Text:#{tweet.text} <br> tweet.retweet_count: #{tweet.retweet_count} <br> tweet.favorite_count: #{tweet.favorite_count}<br><br>"
+  end
+  erb :campaigns_erb
+end
+
 get '/tweets' do
   5.times { puts '-------' }
-  #tw = client.status('676148707176423424')
-  #puts "Text: #{tw.text}"
-  #tw = client.search("#tweetybitcoin")
-  #puts tw.to_h
-  client.search("#MiaBitcoinHack #tweetybitcoin", result_type: "recent").take(1).collect do |tweet|
-  puts tweet.to_h
-  "#{tweet.user.screen_name}: #{tweet.text}"
+  a = 0
+  @Tweets = {}
+  client.search("#tweetybitcoin", result_type: "recent").take(10).collect do |tweet|
+    #puts tweet.to_h
+    a = a+1
+    capmaign_name = ''
+    tweet.text.scan(/#.\w{1,}/).each {|match| capmaign_name = match unless match == "#tweetybitcoin"}
+    @Tweets[a]={"tweet.user.screen_name"=>tweet.user.screen_name,
+      "tweet.user.followers_count"=>tweet.user.followers_count,
+      "tweet.user.statuses_count"=>tweet.user.statuses_count,
+      "tweet.text"=>tweet.text,
+      "tweet.retweet_count"=>tweet.retweet_count,
+      "tweet.favorite_count"=>tweet.favorite_count,
+      "capmaign_name"=>capmaign_name
+    }
+    #Tweets << "#{a}. <br> tweet.user.screen_name:#{tweet.user.screen_name} <br> tweet.user.followers_count: #{tweet.user.followers_count} <br> tweet.user.statuses_count: #{tweet.user.statuses_count} <br> tweet.Text:#{tweet.text} <br> tweet.retweet_count: #{tweet.retweet_count} <br> tweet.favorite_count: #{tweet.favorite_count}<br><br>"
   end
-  #puts tw
+  @Tweets.to_s
 end
 
 
@@ -73,9 +104,9 @@ get '/myDashboard' do
   "Hello, myDashboard. You are #{role}"
 end
 
-get '/myCampaings' do
-  "Hello, myCampaings. You are #{role} <br/> <a href='/changeRoleToUser'> ChangeRole </a>"
-end
+#get '/myCampaings' do
+#  "Hello, myCampaings. You are #{role} <br/> <a href='/changeRoleToUser'> ChangeRole </a>"
+#end
 
 get '/logout' do
   session[:isUser] = false
