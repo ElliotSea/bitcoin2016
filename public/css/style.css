@@ -163,6 +163,27 @@ section#title-bar h1{
 
 }
 
+
+section#Register_Earn h1{
+	padding-bottom: 10px;
+	font-size: 48px;
+	text-align: center;
+}
+
+section#Register_Earn h5{
+	padding-bottom: 40px;
+	font-size: 20px;
+	text-align: center;
+}
+
+
+section#Register_Earn.btn-{
+	padding:20px 40px 40px 20px`;
+	font-size: 48px;
+	text-align: center;
+}
+
+
 footer{
 	background: #333;
 	color: #fff;
