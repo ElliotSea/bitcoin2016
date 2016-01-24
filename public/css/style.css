@@ -190,11 +190,23 @@ section#Register_Earn h5{
 }
 
 
-section#Register_Earn.btn-{
+section#Register_Earn.btn{
 	padding:20px 40px 40px 20px`;
 	font-size: 48px;
 	text-align: center;
 }
+
+section#Start_campaign form{
+	padding: 20px 100px 240px 50px;
+	text-align: left;
+
+}
+
+section#Start_campaign.col-xs-12{
+	padding-top: 50px;
+	text-align: left;
+}
+
 
 
 footer{
