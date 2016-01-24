@@ -45,7 +45,7 @@ get '/all_tweets' do
   "#{$Tweets.to_s}"
 end
 
-get '/myCampaigns' do
+get '/mycampaigns' do
   #$Tweets[1]["tweet.user.screen_name"]
   $Unique_Earliest_Campaigns[1] = $Tweets[1]
   unique_index = 1
@@ -115,7 +115,7 @@ end
 DataMapper.finalize
 #Campaigns.create(hashtag: "Volvo2016", author: "SergiiMiami")
 
-get '/startCampaign' do
+get '/startcampaign' do
   erb :startcampaign
 end
 
