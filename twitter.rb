@@ -116,7 +116,7 @@ DataMapper.finalize
 #Campaigns.create(hashtag: "Volvo2016", author: "SergiiMiami")
 
 get '/startCampaign' do
-  $User_Info.to_s
+  erb :startcampaign
 end
 
 get '/signin' do
