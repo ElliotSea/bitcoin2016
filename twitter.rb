@@ -19,7 +19,7 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = 'am1Xota6PjunGWtRJjnVTwQvkjxr4sEz93UU5IcEhyM70'
 end
 
-def update_tweets do
+def update_tweets
     a = 0
   client.search("#tweetybitcoin", result_type: "recent").take(10).collect do |tweet|
     a = a+1

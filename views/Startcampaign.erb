@@ -23,8 +23,12 @@ function myFunction(){
   var CompanyName = document.getElementsByName("title")[0].value;
   var CompanyLink = document.getElementsByName("website")[0].value;
   document.getElementsByName("review")[0].value = "This is the great new project from " + CompanyName + ". Read more at " + CompanyLink + " #Tweetybitcoin " + hashtagg;
-  
 
+}
+
+function enablePublish(){
+        document.getElementsByName("publish")[0].disabled=false
+  
 }
 
 
@@ -156,20 +160,30 @@ function myFunction(){
 <br>
 <br>
 <div class="row">
-<div class="col-xs-5">
-    <button type="submit" class="btn btn-primary btn-left" name="publish">Publish</button>
+<div class="col-xs-8">
+    <button type="submit" class="btn btn-primary pull-left" name="publish">Publish</button>
+
+    <button type="submit" class="btn btn-primary pull-right">Share</button>
 </div>
 
-<div class="col-xs-5 col-md-offset-1">
-    <button type="submit" class="btn btn-primary btn-right">Share</button>
+<div class="col-xs-2">
+    <label class="control-label" text-align="center">$500</label>
 </div>
 
-<div class="col-xs-1">
-    <label class="control-label">$1,000,000</label>
-</div>
+<div class="col-xs-2">
+  <form action="/charge" method="POST" onclick="enablePublish()">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_ImGgMUaHkMsCevHj2OZKOBVW"
+    data-image="/img/tweetybitcoin.jpg"
+    data-name="TweetyBitcoin"
+    data-description="2 widgets"
+    data-amount="50000"
+    data-locale="auto">
+  </script>
+</form>
 
-<div class="col-xs-1">
-    <button type="submit" class="btn btn-primary btn-right pull-right">Pay</button>
+
 </div>
 
 </div>

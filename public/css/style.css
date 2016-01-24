@@ -217,7 +217,9 @@ section#Start_campaign.col-xs-12{
 	text-align: left;
 }
 
-
+Start_campaign .control-label, .form-control {
+    text-align: right;
+}
 
 footer{
 	background: #333;
