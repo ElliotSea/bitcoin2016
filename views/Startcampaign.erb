@@ -108,6 +108,27 @@ function myFunction(){
                 <label class="control-label">Company Landing Page</label>
                 <input type="text" class="form-control" name="Landing_Page" value="" />
             </div>
+            <div class="col-xs-2">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="">
+                Quickest
+              </label>
+            </div>
+            <div class="checkbox disabled">
+              <label>
+                <input type="checkbox" value="" disabled>
+                Most Active
+              </label>
+            </div>
+            <div class="checkbox disabled">
+              <label>
+                <input type="checkbox" value="" disabled>
+                Random Retweet
+              </label>
+            </div>
+            </div>
+
         </div>
     </div>
 
@@ -124,17 +145,34 @@ function myFunction(){
             </div>
         </div>
     </div>
-
+<div class="row">
     <div class="col-xs-8">
       <label class="control-label">Message</label>
    
         <textarea class="form-control" name="review" rows="8" value="" maxlength="110"></textarea>
     </div>
   </div>
-<div class="col-xs-12">
-    <button type="submit" class="btn btn-primary btn-right">Publish</button>
+</div>
+<br>
+<br>
+<div class="row">
+<div class="col-xs-5">
+    <button type="submit" class="btn btn-primary btn-left" name="publish">Publish</button>
 </div>
 
+<div class="col-xs-5 col-md-offset-1">
+    <button type="submit" class="btn btn-primary btn-right">Share</button>
+</div>
+
+<div class="col-xs-1">
+    <label class="control-label">$1,000,000</label>
+</div>
+
+<div class="col-xs-1">
+    <button type="submit" class="btn btn-primary btn-right pull-right">Pay</button>
+</div>
+
+</div>
 </form>
 
 
