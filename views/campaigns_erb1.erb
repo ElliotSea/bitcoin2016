@@ -1,0 +1,16 @@
+<ul>
+<% @Tweets.each do |id, tweet| %>
+<li>
+<%= id %>
+<%= tweet["tweet.user.screen_name"] %>
+<%= tweet["tweet.user.followers_count"] %>
+<%= tweet["tweet.user.statuses_count"] %>
+<%= tweet["tweet.text"] %>
+<%= tweet["tweet.retweet_count"] %>
+<%= tweet["tweet.favorite_count"] %>
+<%= tweet["capmaign_name"] %>
+<br>
+
+</li>
+<% end %>
+</ul>
