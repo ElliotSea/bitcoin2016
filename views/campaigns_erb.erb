@@ -10,10 +10,10 @@
     <title>Tweetybitcoin.com</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../public/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../public/css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
@@ -64,12 +64,12 @@
       <h1>Company Campaigns</h1>
 
     
-<% @Tweets.each do |id, tweet| %>
+<% $Unique_Campaigns.each do |id, tweet| %>
 
      <div class="media">
         <div class="media-left">
           <a href="#">
-            <img class="media-object" src="../public/img/audi.jpg" alt="...">
+            <img class="media-object" src="<%= tweet["tweet.media_url"] %>" alt="...">
          </a>   
         </div>
       <div class="media-body">
@@ -123,7 +123,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script src="../public/js/bootstrap.js"></script>
+      <script src="js/bootstrap.js"></script>
     
   </body>
 </html>
