@@ -13,10 +13,10 @@ $Unique_Earliest_Campaigns = {}
 $User_Info = {}
 
 client = Twitter::REST::Client.new do |config|
-  config.consumer_key = 'DCfSzu7Y4NTCqqEMC96H0X21X'
-  config.consumer_secret = '9ppSzdNgrBsmbyGG1j8KbkLMaCZ7h1FVh5CaBfQmjTUCuwu6QN'
-  config.access_token = '260634042-2xdwuPbH7XlB6bN67DFdL6Su85Tpjya2ZHjBCSpg'
-  config.access_token_secret = 'cSj8X8kK6gAHXHIM41wj9PmotY3vKrtT8kFlVSHM0dIMK'
+  config.consumer_key = 'JzN2vmxaW5KUHpyCsY6l7PPho'
+  config.consumer_secret = 'D7fs16gJH6uRE7jAx3BIGiO5AzWqROfIrd0FP0HVqW1vfl3gQd'
+  config.access_token = '4839434439-QBZMloOBbMpn7SH3jMnXeluMETeO7oFwAaSBk5m'
+  config.access_token_secret = 'am1Xota6PjunGWtRJjnVTwQvkjxr4sEz93UU5IcEhyM70'
 end
 
 get '/all_tweets' do
