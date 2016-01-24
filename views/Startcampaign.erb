@@ -16,6 +16,21 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+<script language= "JavaScript" type="text/JavaScript">
+function myFunction(){
+  
+  var hashtagg = document.getElementsByName("hashtag")[0].value;
+  var CompanyName = document.getElementsByName("title")[0].value;
+  var CompanyLink = document.getElementsByName("website")[0].value;
+  document.getElementsByName("review")[0].value = "This is the great new project from " + CompanyName + ". Read more at " + CompanyLink + " #Tweetybitcoin " + hashtagg;
+  
+
+}
+
+
+</script>
+
+
   </head>
 
   <body>
@@ -61,7 +76,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <label class="control-label">Company Name</label>
-                <input type="text" class="form-control" name="title" value="<%= $User_Info['CompanyName'] %>"/>
+                <input type="text" class="form-control" name="title" value="<%= $User_Info['CompanyName'] %>" onChange="myFunction()"/>
             </div>
 
             <div class="col-xs-2 selectContainer">
@@ -105,7 +120,7 @@
 
             <div class="col-xs-4">
                 <label class="control-label">#Hashtag</label>
-                <input type="text" class="form-control" name="hashtag" value="" />
+                <input type="text" class="form-control" name="hashtag" value="" maxlength="15" onChange="myFunction()"/>
             </div>
         </div>
     </div>
@@ -113,7 +128,7 @@
     <div class="col-xs-8">
       <label class="control-label">Message</label>
    
-        <textarea class="form-control" name="review" rows="8" value=""></textarea>
+        <textarea class="form-control" name="review" rows="8" value="" maxlength="110"></textarea>
     </div>
   </div>
 <div class="col-xs-12">
