@@ -134,8 +134,8 @@ post '/startcampaign' do
   redirect to("/mycampaigns")
 end
 
-get '/campaingsdetails' do
-  erb :campaingsdetails
+get '/campaignsdetails' do
+  erb :campaignsdetails
 end
 
 get '/signin' do
