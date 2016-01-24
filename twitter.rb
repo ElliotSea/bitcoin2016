@@ -12,7 +12,7 @@ $Tweets = {}
 $Unique_Earliest_Campaigns = {}
 $User_Info = {}
 
-client = Twitter::REST::Client.new do |config|
+$client = Twitter::REST::Client.new do |config|
   config.consumer_key = 'JzN2vmxaW5KUHpyCsY6l7PPho'
   config.consumer_secret = 'D7fs16gJH6uRE7jAx3BIGiO5AzWqROfIrd0FP0HVqW1vfl3gQd'
   config.access_token = '4839434439-QBZMloOBbMpn7SH3jMnXeluMETeO7oFwAaSBk5m'
@@ -21,7 +21,7 @@ end
 
 def update_tweets
     a = 0
-  client.search("#tweetybitcoin", result_type: "recent").take(10).collect do |tweet|
+    $client.search("#tweetybitcoin", result_type: "recent").take(10).collect do |tweet|
     a = a+1
     capmaign_name = ''
     tweet.text.scan(/#.\w{1,}/).each {|match| capmaign_name = match unless match == "#tweetybitcoin"}
@@ -175,6 +175,7 @@ end
 
 get '/' do
   update_tweets
+  "home"
   #erb :home 
 end
 
