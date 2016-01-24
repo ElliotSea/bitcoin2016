@@ -113,10 +113,21 @@ class Campaigns
   property :author,       String, :required => true
 end
 DataMapper.finalize
-#Campaigns.create(hashtag: "Volvo2016", author: "SergiiMiami")
 
 get '/startcampaign' do
   erb :startcampaign
+end
+
+post '/startcampaign' do
+  landing_page = params[:Landing_Page] || "http://google.com"
+  campaign_length = params[:length] || 1
+  campaign_website = params[:website] || "http://google.com"
+  hashtag = params[:hashtag] || "http://google.com"
+  tweet_message = params[:review] || "#tweetybitcoin"
+  Campaigns.create(hashtag: hashtag, author: $User_Info['TwitterName'])
+  client.sample {|twitter| twitter.tweet_message}
+  #Twitter.update(tweet_message)
+  redirect to("/mycampaigns")
 end
 
 get '/signin' do
@@ -135,9 +146,6 @@ get '/auth/twitter/callback' do
   #output
 #  "<h1>Hi #{env['omniauth.auth']['info']['nickname']}!</h1><img src='#{env['omniauth.auth']['info']['image']}'>"
 end
-
-
-
 
 configure do
   enable :sessions
