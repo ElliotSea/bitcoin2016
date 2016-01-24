@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   
+    <title>Tweetybitcoin.com</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<script language= "JavaScript" type="text/JavaScript">
+function myFunction(){ 
+  var hashtagg = document.getElementsByName("hashtag")[0].value;
+  var CompanyName = document.getElementsByName("title")[0].value;
+  var CompanyLink = document.getElementsByName("website")[0].value;
+  document.getElementsByName("review")[0].value = "This is the great new project from " + CompanyName + ". Read more at " + CompanyLink + " #Tweetybitcoin " + hashtagg;
+}
+
+function enablePublish(){
+  alert("1");
+  document.getElementsByName("publish")[0].disabled=false;
+}
+function recalculatePrice(){
+  var amount = 200
+  if (document.getElementsByName("check1")[0].checked)
+    amount = amount +50
+  if (document.getElementsByName("check2")[0].checked)
+    amount = amount +50
+  if (document.getElementsByName("check3")[0].checked)
+    amount = amount +50
+  amount = amount + (document.getElementsByName("length")[0].value)*5
+  document.getElementsByName("price")[0].innerHTML = "$"+amount; 
+}
+</script>
+
+
+  </head>
+
+  <body>
+
+    <div class="jumbotron_cmp">
+          
+          <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand em-text" href="#"><h2>Tweetybitcoin.com</h2></a>
+        </div>
+        
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="color-me" href="#about">Register</a></li>
+            <li><a href="#contact">Sign In</a></li>
+
+            <li><a href="#">Earnings</a></li>
+            <li><a href="#about">Earn Bitcoins</a></li>
+            <li><a href="#">Start Campaign</a></li>
+            
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+      
+
+        </div>
+      </div>
+    </div>
+    
+
+   <section id="Start_campaign">
+    <form id="movieForm" method="post">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="control-label">Company Name</label>
+                <input type="text" class="form-control" name="title" value="<%= $User_Info['CompanyName'] %>" onChange="myFunction()"/>
+            </div>
+
+            <div class="col-xs-2 selectContainer" onChange="recalculatePrice()">
+                <label class="control-label">Campaign length</label>
+                <select class="form-control" name="length">
+                    <option value=1>One Month</option>
+                    <option value=3>Three Monthes</option>
+                    <option value=6>Six Monthes</option>
+                    <option value=12>One Year</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-2">
+                <label class="control-label">@Twitter</label>
+                <input type="text" class="form-control" name="twitter" value="<%= $User_Info['TwitterName'] %>" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Description</label>
+                <input type="text" class="form-control" name="Description" value="<%= $User_Info['Description'] %>" />
+            </div>
+
+            <div class="col-xs-2">
+                <label class="control-label">Company Landing Page</label>
+                <input type="text" class="form-control" name="Landing_Page" value="" />
+            </div>
+            <div class="col-xs-2">
+            <div class="checkbox" onClick="recalculatePrice()">
+              <label>
+                <input type="checkbox" name="check1" value="">
+                Quickest
+              </label>
+            </div>
+            <div class="checkbox" onClick="recalculatePrice()">
+              <label>
+                <input type="checkbox" name="check2" value="">
+                Most Active
+              </label>
+            </div>
+            <div class="checkbox" onClick="recalculatePrice()">
+              <label>
+                <input type="checkbox" name="check3" value="">
+                Random Retweet
+              </label>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-4">
+                <label class="control-label">Campaign Page</label>
+                <input type="text" class="form-control" name="website" value="" />
+            </div>
+
+            <div class="col-xs-4">
+                <label class="control-label">#Hashtag</label>
+                <input type="text" class="form-control" name="hashtag" value="#" maxlength="15" onChange="myFunction()"/>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-xs-8">
+      <label class="control-label">Message</label>
+   
+        <textarea class="form-control" name="review" rows="8" value="" maxlength="110"></textarea>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="row">
+<div class="col-xs-8">
+    <button type="submit" class="btn btn-primary pull-left btn-disabled" name="publish" disabled>Publish</button>
+    <button type="submit" class="btn btn-primary pull-right btn-disabled" disabled>Share</button>
+</div>
+
+<div class="col-xs-2">
+    <h4 name="price">$500</h4>
+</div>
+
+<div class="col-xs-2">
+ <form action="/charge" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_ImGgMUaHkMsCevHj2OZKOBVW"
+    data-image="/img/tweetybitcoin.jpg"
+    data-name="TweetyBitcoin"
+    data-description="2 widgets"
+    data-amount=amount
+    data-locale="auto">
+  </script>
+</form>
+
+</div>
+
+</div>
+</form>
+
+
+   </section>
+
+ 
+<footer>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <ul>
+        <li><a href="#"</a>Home</li>
+        <li><a href="#"</a>About</li>
+        <li><a href="#"</a>Contact</li>
+        <li><a href="#"</a>Privacy Policy</li>
+      </ul>
+    </div>    
+    <div class="col-md-6 col-xs-12">
+      <p>Copyright &copy; 2015, All rights Reserved</p>
+    </div>
+
+  </div>
+
+</div>
+</form>
+
+
+   </section>
+
+ 
+<footer>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <ul>
+        <li><a href="#"</a>Home</li>
+        <li><a href="#"</a>About</li>
+        <li><a href="#"</a>Contact</li>
+        <li><a href="#"</a>Privacy Policy</li>
+      </ul>
+    </div>    
+    <div class="col-md-6 col-xs-12">
+      <p>Copyright &copy; 2015, All rights Reserved</p>
+    </div>
+
+  </div>
+
+</div>
+</footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="js/bootstrap.js"></script>
+      <script src="js/form.js"></script>
+    
+  </body>
+</html>
