@@ -17,21 +17,28 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 <script language= "JavaScript" type="text/JavaScript">
-function myFunction(){
-  
+function myFunction(){ 
   var hashtagg = document.getElementsByName("hashtag")[0].value;
   var CompanyName = document.getElementsByName("title")[0].value;
   var CompanyLink = document.getElementsByName("website")[0].value;
   document.getElementsByName("review")[0].value = "This is the great new project from " + CompanyName + ". Read more at " + CompanyLink + " #Tweetybitcoin " + hashtagg;
-
 }
 
 function enablePublish(){
-        document.getElementsByName("publish")[0].disabled=false
-  
+  alert("1");
+  document.getElementsByName("publish")[0].disabled=false;
 }
-
-
+function recalculatePrice(){
+  var amount = 200
+  if (document.getElementsByName("check1")[0].checked)
+    amount = amount +50
+  if (document.getElementsByName("check2")[0].checked)
+    amount = amount +50
+  if (document.getElementsByName("check3")[0].checked)
+    amount = amount +50
+  amount = amount + (document.getElementsByName("length")[0].value)*5
+  document.getElementsByName("price")[0].innerHTML = "$"+amount; 
+}
 </script>
 
 
@@ -83,10 +90,9 @@ function enablePublish(){
                 <input type="text" class="form-control" name="title" value="<%= $User_Info['CompanyName'] %>" onChange="myFunction()"/>
             </div>
 
-            <div class="col-xs-2 selectContainer">
+            <div class="col-xs-2 selectContainer" onChange="recalculatePrice()">
                 <label class="control-label">Campaign length</label>
                 <select class="form-control" name="length">
-                    
                     <option value=1>One Month</option>
                     <option value=3>Three Monthes</option>
                     <option value=6>Six Monthes</option>
@@ -113,21 +119,21 @@ function enablePublish(){
                 <input type="text" class="form-control" name="Landing_Page" value="" />
             </div>
             <div class="col-xs-2">
-            <div class="checkbox">
+            <div class="checkbox" onClick="recalculatePrice()">
               <label>
-                <input type="checkbox" value="">
+                <input type="checkbox" name="check1" value="">
                 Quickest
               </label>
             </div>
-            <div class="checkbox disabled">
+            <div class="checkbox" onClick="recalculatePrice()">
               <label>
-                <input type="checkbox" value="" disabled>
+                <input type="checkbox" name="check2" value="">
                 Most Active
               </label>
             </div>
-            <div class="checkbox disabled">
+            <div class="checkbox" onClick="recalculatePrice()">
               <label>
-                <input type="checkbox" value="" disabled>
+                <input type="checkbox" name="check3" value="">
                 Random Retweet
               </label>
             </div>
@@ -145,7 +151,7 @@ function enablePublish(){
 
             <div class="col-xs-4">
                 <label class="control-label">#Hashtag</label>
-                <input type="text" class="form-control" name="hashtag" value="" maxlength="15" onChange="myFunction()"/>
+                <input type="text" class="form-control" name="hashtag" value="#" maxlength="15" onChange="myFunction()"/>
             </div>
         </div>
     </div>
@@ -162,23 +168,22 @@ function enablePublish(){
 <div class="row">
 <div class="col-xs-8">
     <button type="submit" class="btn btn-primary pull-left" name="publish">Publish</button>
-
     <button type="submit" class="btn btn-primary pull-right">Share</button>
 </div>
 
 <div class="col-xs-2">
-    <h4>$500</h4>
+    <h4 name="price">$500</h4>
 </div>
 
 <div class="col-xs-2">
-  <form action="/charge" method="POST" onclick="enablePublish()">
+  <form action="/charge" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_ImGgMUaHkMsCevHj2OZKOBVW"
     data-image="/img/tweetybitcoin.jpg"
     data-name="TweetyBitcoin"
     data-description="2 widgets"
-    data-amount="50000"
+    data-amount=amount
     data-locale="auto">
   </script>
 </form>
