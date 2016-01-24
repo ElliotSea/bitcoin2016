@@ -41,8 +41,8 @@
             <li><a class="color-me" href="#about">Register</a></li>
             <li><a href="/signin">Sign In</a></li>
 
-            <li><a href="/">Earnings</a></li>
-            <li><a href="/mycampaigns">Earn Bitcoins</a></li>
+            <li><a href="#">Earnings</a></li>
+            <li><a href="#about">Earn Bitcoins</a></li>
             <li><a href="/startcampaign">Start Campaign</a></li>
             
             
@@ -60,29 +60,27 @@
    <section id="campaigns">
     <div class="container-fluid">
       <div class="row">
-      <h1>Company Campaigns</h1>
+      <h1>#MiaBitcoinHack2016 : Most Active users</h1>
     </div>
 
     
 <% $Unique_Earliest_Campaigns.each do |id, tweet| %>
   <div class="row">
      <div class="media">
-        <div class="media-left">
-          <a href="#">
-            <div class="col-md-3"> <img class="media-object" src="<%= tweet["tweet.media_url"] %>" alt="..."></div>
-         </a>   
+        <div class="media-left">  
         
 
       <div class="media-body">
-        <h4 class="media-heading"><%= tweet["capmaign_name"] %></h4>
+        <h4 class="media-heading">   @<%= $Tweets[id]["tweet.user.screen_name"] %></h4>
          <p><%= tweet["tweet.text"] %></p>
           
-          <div class="col-md-2"> <a class="btn btn-primary pull-right" href="#"><i class="fa fa-twitter fa-fw"></i> Share Campaign </a></div>
+          <div class="col-md-2"> <script src="https://www.coinbase.com/assets/button.js" type="text/javascript"></script>
+    <a class="coinbase-button" data-code="9eafd4aa76bb9ca4d95ad9fc89680489" href="https://www.coinbase.com/checkouts/9eafd4aa76bb9ca4d95ad9fc89680489">Pay With Bitcoin</a></div>
 
           <div class="col-md-1"><button class="btn btn-sm btn-default like-btn active" type="button" id="10"> <span class="i class="fa fa-eye fa-fw""></span><span class="text">Likes</span> <span class="badge like-badge"><%= tweet["tweet.favorite_count"] %></span></button></div>       
-<a href="/campaignsdetails">
+
           <div class="col-md-1"><button class="btn btn-sm btn-default like-btn active" type="button" id="10"> <span class="i class="fa fa-share fa-fw""></span><span class="text">Shares</span> <span class="badge like-badge"><%= tweet["tweet.retweet_count"] %></span></button></div>
-</a>
+
           
 
         </div>

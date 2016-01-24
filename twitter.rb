@@ -134,6 +134,10 @@ post '/startcampaign' do
   redirect to("/mycampaigns")
 end
 
+get '/campaignsdetails' do
+  erb :campaignsdetails
+end
+
 get '/signin' do
   redirect to("/auth/twitter")
 end
