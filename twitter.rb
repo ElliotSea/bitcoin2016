@@ -10,7 +10,7 @@ require 'erb'
 
 $Tweets = {}
 $Unique_Earliest_Campaigns = {}
-
+$User_Info = {}
 
 client = Twitter::REST::Client.new do |config|
   config.consumer_key = 'DCfSzu7Y4NTCqqEMC96H0X21X'
@@ -116,7 +116,7 @@ DataMapper.finalize
 #Campaigns.create(hashtag: "Volvo2016", author: "SergiiMiami")
 
 get '/startCampaign' do
-  puts ""
+  $User_Info.to_s
 end
 
 get '/signin' do
@@ -124,7 +124,11 @@ get '/signin' do
 end
 
 get '/auth/twitter/callback' do
-  env['omniauth.auth'] ? session[session[:candidate].to_sym] = true : halt(401,'Not Authorized')
+  $User_Info['TwitterName']=env['omniauth.auth']['info']['nickname']
+  $User_Info['CompanyName']=env['omniauth.auth']['info']['name']
+  $User_Info['Description']=env['omniauth.auth']['info']['description']
+  redirect to("/")
+   #? session[session[:candidate].to_sym] = true : halt(401,'Not Authorized')
   #logic to find out if Company or User
   #output = ''
   #env.each { |n,v| output << n.to_s; output << ": "; output << v.to_s; output << "; " }
@@ -158,7 +162,7 @@ helpers do
 end
 
 get '/' do
-  'Hello, everyone'
+  $User_Info.to_s
 end
 
 get '/myDashboard' do
