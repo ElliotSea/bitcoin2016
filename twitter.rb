@@ -19,8 +19,8 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = 'am1Xota6PjunGWtRJjnVTwQvkjxr4sEz93UU5IcEhyM70'
 end
 
-get '/all_tweets' do
-  a = 0
+def update_tweets do
+    a = 0
   client.search("#tweetybitcoin", result_type: "recent").take(10).collect do |tweet|
     a = a+1
     capmaign_name = ''
@@ -42,6 +42,10 @@ get '/all_tweets' do
       "tweet.media_url"=>image
     }
   end
+end
+
+get '/all_tweets' do
+  update_tweets
   "#{$Tweets.to_s}"
 end
 
@@ -170,7 +174,8 @@ helpers do
 end
 
 get '/' do
-  $User_Info.to_s
+  update_tweets
+  #erb :home 
 end
 
 get '/myDashboard' do
