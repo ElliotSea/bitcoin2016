@@ -176,7 +176,7 @@ end
 get '/' do
   update_tweets
   "home"
-  #erb :home 
+  erb :index
 end
 
 get '/myDashboard' do
