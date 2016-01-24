@@ -11,6 +11,7 @@ require 'erb'
 $Tweets = {}
 $Unique_Earliest_Campaigns = {}
 
+
 client = Twitter::REST::Client.new do |config|
   config.consumer_key = 'DCfSzu7Y4NTCqqEMC96H0X21X'
   config.consumer_secret = '9ppSzdNgrBsmbyGG1j8KbkLMaCZ7h1FVh5CaBfQmjTUCuwu6QN'
@@ -101,6 +102,8 @@ use OmniAuth::Builder do
   provider :twitter, 'DCfSzu7Y4NTCqqEMC96H0X21X', '9ppSzdNgrBsmbyGG1j8KbkLMaCZ7h1FVh5CaBfQmjTUCuwu6QN'
 end
 
+
+#DB
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
 
 class Campaigns
@@ -111,6 +114,26 @@ class Campaigns
 end
 DataMapper.finalize
 #Campaigns.create(hashtag: "Volvo2016", author: "SergiiMiami")
+
+get '/startCampaign' do
+  puts ""
+end
+
+get '/signin' do
+  redirect to("/auth/twitter")
+end
+
+get '/auth/twitter/callback' do
+  env['omniauth.auth'] ? session[session[:candidate].to_sym] = true : halt(401,'Not Authorized')
+  #logic to find out if Company or User
+  #output = ''
+  #env.each { |n,v| output << n.to_s; output << ": "; output << v.to_s; output << "; " }
+  #output
+#  "<h1>Hi #{env['omniauth.auth']['info']['nickname']}!</h1><img src='#{env['omniauth.auth']['info']['image']}'>"
+end
+
+
+
 
 configure do
   enable :sessions
@@ -152,14 +175,14 @@ get '/logout' do
   "You are logging out"
 end
 
-get '/startCampaign' do
-  session[:candidate] = :isCompany
-  if (session[:isUser] or session[:isCompany])
-  	redirect to("/myCampaings")
-  else
-  	redirect to("/auth/twitter")
-  end
-end
+#get '/startCampaign' do
+#  session[:candidate] = :isCompany
+#  if (session[:isUser] or session[:isCompany])
+#  	redirect to("/myCampaings")
+#  else
+#  	redirect to("/auth/twitter")
+#  end
+#end
 
 get '/earn' do
 session[:candidate] = :isUser
@@ -174,13 +197,4 @@ get '/changeRoleToUser' do
 	session[:isCompany] = false
 	session[:isUser] = true
   	redirect to("/myDashboard")	
-end
-
-get '/auth/twitter/callback' do
-  env['omniauth.auth'] ? session[session[:candidate].to_sym] = true : halt(401,'Not Authorized')
-  #logic to find out if Company or User
-  output = ''
-  env.each { |n,v| output << n.to_s; output << ": "; output << v.to_s; output << "; " }
-  output
-#  "<h1>Hi #{env['omniauth.auth']['info']['nickname']}!</h1><img src='#{env['omniauth.auth']['info']['image']}'>"
 end
