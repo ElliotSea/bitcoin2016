@@ -119,6 +119,17 @@ get '/startcampaign' do
   erb :startcampaign
 end
 
+post '/startcampaign' do
+  landing_page = params[:Landing_Page] || "http://google.com"
+  campaign_length = params[:length] || 1
+  campaign_website = params[:website] || "http://google.com"
+  hashtag = params[:hashtag] || "http://google.com"
+  tweet_message = params[:review] || "#tweetybitcoin"
+  Campaigns.create(hashtag: hashtag, author: $User_Info['TwitterName'])
+end
+
+
+
 get '/signin' do
   redirect to("/auth/twitter")
 end
