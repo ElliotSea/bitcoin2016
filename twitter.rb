@@ -125,7 +125,7 @@ post '/startcampaign' do
   hashtag = params[:hashtag] || "http://google.com"
   tweet_message = params[:review] || "#tweetybitcoin"
   Campaigns.create(hashtag: hashtag, author: $User_Info['TwitterName'])
-  client.sample {|twitter| twitter.tweet_message}
+  client.update(tweet_message)
   #Twitter.update(tweet_message)
   redirect to("/mycampaigns")
 end
