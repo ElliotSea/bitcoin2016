@@ -76,6 +76,27 @@
         </div>
     </div>
 
+    <script language= "JavaScript" type="text/JavaScript">
+    function enablePublish(){
+        document.getElementsByName("publish")[0].disabled=false
+    }
+    </script>
+
+    <form action="/charge" method="POST" onclick="enablePublish()">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_ImGgMUaHkMsCevHj2OZKOBVW"
+    data-image="/img/documentation/checkout/marketplace.png"
+    data-name="Demo Site"
+    data-description="2 widgets"
+    data-amount="2000"
+    data-locale="auto">
+  </script>
+  <div class="col-xs-12">
+    <button type="submit" class="btn btn-primary btn-right" name="publish" disabled>Publish</button>
+</div>
+</form>
+
     <div class="form-group">
         <div class="row">
             <div class="col-xs-2">
