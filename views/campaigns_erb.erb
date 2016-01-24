@@ -59,19 +59,21 @@
     
 
    <section id="campaigns">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
       <h1>Company Campaigns</h1>
+    </div>
 
     
 <% $Unique_Earliest_Campaigns.each do |id, tweet| %>
-
+  <div class="row">
      <div class="media">
         <div class="media-left">
           <a href="#">
-            <img class="media-object" src="<%= tweet["tweet.media_url"] %>" alt="...">
+            <div class="col-md-3"> <img class="media-object" src="<%= tweet["tweet.media_url"] %>" alt="..."></div>
          </a>   
-        </div>
+        
+
       <div class="media-body">
         <h4 class="media-heading"><%= tweet["capmaign_name"] %></h4>
          <p><%= tweet["tweet.text"] %></p>
@@ -84,9 +86,11 @@
 
           
 
+        </div>
       </div>
-    </div>
-
+  
+  </div>
+      </div>
 <% end %>
 
 
@@ -94,7 +98,7 @@
 
 
       </div>
-    </div>
+  
    </section>
 
  
