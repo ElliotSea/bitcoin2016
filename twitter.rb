@@ -116,7 +116,7 @@ DataMapper.finalize
 #Campaigns.create(hashtag: "Volvo2016", author: "SergiiMiami")
 
 get '/startCampaign' do
-  puts ""
+  "<h1>Hi #{env['omniauth.auth']['info']['nickname']}!</h1><img src='#{env['omniauth.auth']['info']['image']}'>"
 end
 
 get '/signin' do
@@ -124,7 +124,7 @@ get '/signin' do
 end
 
 get '/auth/twitter/callback' do
-  env['omniauth.auth'] ? session[session[:candidate].to_sym] = true : halt(401,'Not Authorized')
+  env['omniauth.auth'].to_s #? session[session[:candidate].to_sym] = true : halt(401,'Not Authorized')
   #logic to find out if Company or User
   #output = ''
   #env.each { |n,v| output << n.to_s; output << ": "; output << v.to_s; output << "; " }
